@@ -124,6 +124,25 @@ jobs:
       - name: Build course with ${{ matrix.language }} translation
         run: mdbook build
 
+      - name: update ${{ matrix.language }} translation
+        run: |
+          msgmerge --update po/${{ matrix.language }}.po po/messages.pot
+          msgfmt --statistics -o /dev/null po/${{ matrix.language }}.po 2> book/${{ matrix.language }}.status.txt
+
+      - name: update ${{ matrix.language }} translation
+        shell: python
+        run: |
+          import re, json  
+          m = re.search('(\d+) fuzzy', open('book/${{ matrix.language }}.status.txt').read())
+          status = { 'schemaVersion': 1, 'label': 'fuzzy'}
+          if m:
+            status['message'] = m.group(1)
+            status['color'] = 'orange'
+          else:
+            status['message'] = 0
+            status['color'] = 'green'
+          json.dump(status, open('book/${{ matrix.language }}.status.json', 'w')) 
+
       - name: Upload ${{ matrix.language }} translation
         uses: actions/upload-artifact@v3
         with:
@@ -132,3 +151,4 @@ jobs:
 
       - name: Test code snippets with ${{ matrix.language }} translation
         run: mdbook test
+        
