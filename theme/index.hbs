@@ -58,6 +58,17 @@
         <link rel="stylesheet" href="{{ ../path_to_root }}{{ this }}">
         {{/each}}
 
+        {{#if (eq language "en")}}
+        {{#each translations}}
+        <link rel="alternate" hreflang="{{ this }}" href="{{ @root.path_to_root }}{{this}}/{{ @root.path_html }}" />
+        {{/each}}
+        {{else}}
+        {{#each translations}}
+        <link rel="alternate" hreflang="{{ this }}" href="{{ @root.path_to_root }}../{{this}}/{{ @root.path_html }}" />
+        {{/each}}
+        <link rel="alternate" hreflang="en" href="{{ @root.path_to_root }}../{{ @root.path_html }}" />
+        {{/if}}
+
         {{#if mathjax_support}}
         <!-- MathJax -->
         <script async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
