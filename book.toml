@@ -15,12 +15,10 @@ extra-watch-dirs = ["po"]
 [preprocessor.links]
 renderers = ["html"]
 
+[preprocessor.gettext]
+
 [preprocessor.index]
 renderers = ["html"]
-
-[preprocessor.gettext]
-renderers = ["html"]
-po-dir = "po"
 
 [preprocessor.svgbob]
 renderers = ["html"]
