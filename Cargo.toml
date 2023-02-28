@@ -5,4 +5,4 @@ members = [
 ]
 
 [patch.crates-io]
-mdbook = { path = "../mdBook" }
+mdbook = { git = "https://github.com/jooyunghan/mdbook", branch = "po-trans" }

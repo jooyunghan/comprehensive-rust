@@ -2515,3 +2515,4 @@ dependencies = [
 [[patch.unused]]
 name = "mdbook"
 version = "0.4.27"
+source = "git+https://github.com/jooyunghan/mdbook?branch=po-trans#ac295bbfcc9cd93007206dd23a29efd7bd5dc2ac"
